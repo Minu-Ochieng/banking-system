@@ -6,7 +6,7 @@ from client.models import Client
 # Create your models here.
 
 class BankAccount(models.Model):
-    id = models.AutoField(primary_key=True)
+    bank_account_id = models.AutoField(primary_key=True)
     account_number = models.CharField(max_length=30, unique=True)
     account_type = models.CharField(max_length=20, choices=[("Savings", "Savings"), ("Checking", "Checking"), ("Business", "Business")])
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="bank_accounts")

@@ -1,12 +1,7 @@
 from client.models import Client
 from rest_framework import serializers
-
 from bankModel.models import Bank
-
-
 from bankAccount.models import BankAccount
-
-
 
 class ClientSerializer(serializers.ModelSerializer):
 
@@ -39,6 +34,13 @@ class BankAccountSerializer(serializers.ModelSerializer):
         model = BankAccount
         fields = '__all__'
 
+class MinimalBankAccountSerializer(serializers.ModelSerializer):
+    bank_account_id = serializers.PrimaryKeyRelatedField(read_only=True)
+    def get_account_number(self, obj):
+        return obj.account_number
+    class Meta:
+        model = BankAccount
+        fields = '__all__'
 
 
 class BankModelSerializer(serializers.ModelSerializer):
@@ -50,3 +52,13 @@ class BankModelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
+class MinimalBankModelSerializer(serializers.ModelSerializer):
+
+    bank_id = serializers.PrimaryKeyRelatedField(read_only=True)
+    
+    def get_name(self, obj):
+        return obj.bank_name
+    class Meta:
+        model = Bank
+        fields = '__all__'
