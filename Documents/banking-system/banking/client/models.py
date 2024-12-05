@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Client(models.Model):
-    id = models.AutoField(primary_key=True)
+    client_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     kra_pin = models.CharField(max_length=20, unique=True) 
